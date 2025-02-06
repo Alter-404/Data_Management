@@ -14,7 +14,7 @@ The Multi-Asset Portfolio Manager project is a comprehensive solution designed t
 
 ## Project Structure
 ```
-portfolio_optimization_project/
+multi_asset_portfolio_manager/
 │
 ├── main.py                  # Main script to run the project
 │
