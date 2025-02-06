@@ -29,8 +29,7 @@ portfolio_optimization_project/
 │   │   ├── __init__.py      
 │   │   ├── data_processing.py # Functions for data importing and cleaning
 │   │   ├── database_manager.py # Database operations
-│   │   └── database/        # Database schema and storage
-│   │       └── schema.sql   
+│   │   └── database/        # Database schema and storage 
 │   │
 │   ├── portfolio_optimization/  # Portfolio optimization & risk management
 │   │   ├── __init__.py      
@@ -43,16 +42,12 @@ portfolio_optimization_project/
 │   │   └── plot_results.py  # Functions for plotting results
 │
 ├── outputs/                 # Store generated outputs
-│   ├── logs/                # Log files for debugging and monitoring
-│   │   ├── errors.log       
-│   │   ├── training.log     
+│   ├── logs/                # Log files for debugging and monitoring    
 │   │   └── model_training_logs/
 │   ├── results/             # Results from model predictions
 │   ├── visualizations/      # Visualizations of results
-│   ├── database/            # Database storage
-│   │   └── database.db      
-│   └── models/              # Trained ML models
-│       └── saved_model.pkl  
+│   ├── database/            # Database storage     
+│   └── models/              # Trained ML models 
 │
 ├── tests/                   # Unit tests
 │   ├── __init__.py          
@@ -61,8 +56,6 @@ portfolio_optimization_project/
 │   └── test_optimizer.py    # Unit tests for optimizer functions
 │
 ├── docs/                    # Documentation
-│   ├── project_description.pdf # Detailed project description
-│   └── README.md            # Project overview and instructions
 │
 ├── gui/                     # User Interface (optional)
 │   ├── __init__.py          
@@ -81,8 +74,8 @@ portfolio_optimization_project/
 
 1. **Clone the Repository**:
 ```bash
-    git clone https://github.com/yourusername/portfolio-optimization-project.git
-    cd portfolio-optimization-project
+    git clone https://github.com/Alter-404/Data_Management.git
+    cd Data_Management/multi_asset_portfolio_manager/
 ```
 
 2. **Install Dependencies**:
