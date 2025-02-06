@@ -13,7 +13,7 @@ The Portfolio Optimization Project is a comprehensive solution designed to optim
 - **Graphical User Interface (GUI)**: An optional dashboard for interactive data exploration and strategy visualization.
 
 ## Project Structure
-
+```
 portfolio_optimization_project/
 │
 ├── main.py                  # Main script to run the project
@@ -75,7 +75,7 @@ portfolio_optimization_project/
 │       └── styles.css       
 │
 └── requirements.txt         # Required Python packages
-
+```
 
 ## Getting Started
 
