@@ -1,8 +1,8 @@
-# Portfolio Optimization Project
+# Multi-Asset Portfolio Manager
 
 ## Overview
 
-The Portfolio Optimization Project is a comprehensive solution designed to optimize multi-asset portfolio strategies using machine learning. This project fetches financial data from Yahoo Finance, processes and cleans the data, stores it in a SQLite3 database, and uses machine learning models to propose optimized portfolio strategies with defined risk exposure.
+The Multi-Asset Portfolio Manager project is a comprehensive solution designed to optimize multi-asset portfolio strategies using machine learning. This project fetches financial data from Yahoo Finance, processes and cleans the data, stores it in a SQLite3 database, and uses machine learning models to propose optimized portfolio strategies with defined risk exposure.
 
 ## Features
 
