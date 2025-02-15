@@ -27,7 +27,7 @@ multi_asset_portfolio_manager/
 │   ├── __init__.py          
 │   ├── data_management/     # Data handling (import, cleaning, database)
 │   │   ├── __init__.py      
-│   │   ├── data_processing.py # Functions for data importing and cleaning
+│   │   ├── data_processor.py # Functions for data importing and cleaning
 │   │   ├── database_manager.py # Database operations
 │   │   └── database/        # Database schema and storage 
 │   │
