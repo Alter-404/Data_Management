@@ -8,8 +8,8 @@ from data_management.database_manager import TechnicalIndicators
 
 # Fonction principale
 def run_data_processing():
-    tickers = ["AAPL", "GOOGL", "MSFT"]
-    start_date='2021-01-01'
+    tickers = ["AAPL", "^FTSE", "MSFT"]
+    start_date='2015-01-01'
 
     #Récupéré les données de Yahoo Finance
     processor = YahooFinanceDataProcessor(tickers,start_date)

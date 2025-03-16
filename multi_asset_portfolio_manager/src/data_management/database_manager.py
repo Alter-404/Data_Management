@@ -6,7 +6,6 @@ import logging
 # Configuration du logging pour capturer les erreurs et les messages d'information
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-
 class TechnicalIndicators:
     def __init__(self, db_path="financial_data.db"):
         """
@@ -51,6 +50,69 @@ class TechnicalIndicators:
             logging.error(f"Erreur lors de la récupération des données pour {ticker} : {e}")
             conn.close()
             return None
+        
+    def fill_missing_data(self, ticker):
+        """
+        Remplit les valeurs NULL dans la base avec la dernière valeur disponible.
+        """
+        conn = self._connect_db()
+        if conn is None:
+            return
+        try:
+            cursor = conn.cursor()
+            # Remplir les valeurs manquantes avec la dernière valeur connue (ORDER BY date)
+            query = f"""
+            UPDATE stock_data
+            SET open = COALESCE(open, (
+                SELECT open FROM stock_data AS s2 
+                WHERE s2.ticker = stock_data.ticker 
+                AND s2.date < stock_data.date 
+                AND s2.open IS NOT NULL
+                ORDER BY s2.date DESC
+                LIMIT 1
+            )),
+            high = COALESCE(high, (
+                SELECT high FROM stock_data AS s2 
+                WHERE s2.ticker = stock_data.ticker 
+                AND s2.date < stock_data.date 
+                AND s2.high IS NOT NULL
+                ORDER BY s2.date DESC
+                LIMIT 1
+            )),
+            low = COALESCE(low, (
+                SELECT low FROM stock_data AS s2 
+                WHERE s2.ticker = stock_data.ticker 
+                AND s2.date < stock_data.date 
+                AND s2.low IS NOT NULL
+                ORDER BY s2.date DESC
+                LIMIT 1
+            )),
+            close = COALESCE(close, (
+                SELECT close FROM stock_data AS s2 
+                WHERE s2.ticker = stock_data.ticker 
+                AND s2.date < stock_data.date 
+                AND s2.close IS NOT NULL
+                ORDER BY s2.date DESC
+                LIMIT 1
+            )),
+            volume = COALESCE(volume, (
+                SELECT volume FROM stock_data AS s2 
+                WHERE s2.ticker = stock_data.ticker 
+                AND s2.date < stock_data.date 
+                AND s2.volume IS NOT NULL
+                ORDER BY s2.date DESC
+                LIMIT 1
+            ))
+            WHERE ticker = ?
+            """
+            cursor.execute(query, (ticker,))
+            conn.commit()
+
+            logging.info(f"Valeurs manquantes corrigées pour {ticker}.")
+        except sqlite3.Error as e:
+            logging.error(f"Erreur lors de la correction des valeurs NULL : {e}")
+        finally:
+            conn.close()
 
     def calculate_indicators(self, df):
         """
@@ -122,6 +184,7 @@ class TechnicalIndicators:
         Processus complet : récupère les données, calcule les indicateurs et enregistre les résultats.
         """
         logging.info(f"Traitement des indicateurs pour {ticker}...")
+        self.fill_missing_data(ticker) # Remplir les valeurs manquantes
         df = self.get_stock_data(ticker)
         if df is None:
             return
